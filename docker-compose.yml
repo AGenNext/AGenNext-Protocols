@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  agennext:
+    build: .
+    image: agennext/protocols:latest
+    container_name: agennext-protocols
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./:/app
+    command: python -c "import agennext; print('AGenNext v' + agennext.__version__)"
+
+  dev:
+    build:
+      context: .
+      target: dev
+    image: agennext/protocols:dev
+    container_name: agennext-protocols-dev
+    volumes:
+      - .:/app
+    command: /bin/bash

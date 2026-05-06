@@ -4,7 +4,7 @@ AGenNext Protocols
 A collection of AI agent protocols for multi-agent systems.
 
 Quick Start:
-    from agennext import MCPClient, A2AClient, UCPClient, PaymentClient, AGUIStream, ACPClient
+    from agennext import MCPClient, A2AClient, UCPClient, PaymentClient, AGUIStream, ACPClient, ATPClient
     
     # MCP - Connect to tools
     async with MCPClient("server.py") as client:
@@ -30,6 +30,10 @@ Quick Start:
     client = ACPClient(merchant_id="...")
     cart = Cart(items=[LineItem(id="SKU", quantity=2)])
     session = await client.create_checkout(cart)
+    
+    # ATP - Agent Trade Protocol
+    client = ATPClient(api_key="...", recipient_pubkey="...")
+    result = await client.request("https://api.example.com/agent", {"prompt": "..."})
 """
 
 __version__ = "1.0.0"
@@ -71,6 +75,13 @@ from .acp import (
     Order,
     CheckoutStatus,
     LineItemStatus,
+)
+from .atp import (
+    ATPClient,
+    ATPSettlementMiddleware,
+    UsageData,
+    PriceQuote,
+    SettlementStatus,
 )
 
 __all__ = [
@@ -117,6 +128,12 @@ __all__ = [
     "Order",
     "CheckoutStatus",
     "LineItemStatus",
+    # ATP
+    "ATPClient",
+    "ATPSettlementMiddleware",
+    "UsageData",
+    "PriceQuote",
+    "SettlementStatus",
     # Version
     "__version__",
 ]
