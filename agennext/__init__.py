@@ -83,6 +83,15 @@ from .atp import (
     PriceQuote,
     SettlementStatus,
 )
+from .acp2 import (
+    ACPClient as AgentClient,
+    Agent,
+    Message,
+    MessageRole,
+    Tool,
+    ToolCall,
+    ToolResult,
+)
 
 __all__ = [
     # MCP
@@ -134,6 +143,14 @@ __all__ = [
     "UsageData",
     "PriceQuote",
     "SettlementStatus",
+    # Agent Client Protocol
+    "AgentClient",
+    "Agent",
+    "Message",
+    "MessageRole",
+    "Tool",
+    "ToolCall",
+    "ToolResult",
     # Version
     "__version__",
 ]
