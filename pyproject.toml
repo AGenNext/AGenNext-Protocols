@@ -9,8 +9,6 @@ description = "AGenNext Protocols - AI Agent Protocols SDK"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "AGenNext", email = "info@agennext.io"}]
-homepage = "https://github.com/AGenNext/AGenNext-Protocols"
-repository = "https://github.com/AGenNext/AGenNext-Protocols"
 keywords = ["ai", "agents", "mcp", "a2a", "ucp", "ap2", "ag-ui", "protocol"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -26,7 +24,6 @@ dependencies = [
     "httpx>=0.27.0",
     "pydantic>=2.0.0",
     "python-dotenv>=1.0.0",
-    "sseclient>=3.0.0",
     "pyjwt>=2.0.0",
 ]
 

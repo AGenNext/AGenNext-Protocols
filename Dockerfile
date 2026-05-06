@@ -3,21 +3,28 @@ FROM python:3.11-slim
 LABEL maintainer="AGenNext"
 LABEL description="AGenNext Protocols - AI Agent Protocols SDK"
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set working directory
 WORKDIR /app
 
+# Install pip first
+RUN pip install --no-cache-dir pip
+
 # Copy project files
-COPY . .
+COPY pyproject.toml .
+COPY agennext ./agennext
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -e .
+# Install dependencies
+RUN pip install --no-cache-dir \
+    httpx>=0.27.0 \
+    pydantic>=2.0.0 \
+    python-dotenv>=1.0.0 \
+    sseclient>=3.0.0 \
+    pyjwt>=2.0.0
 
-# Expose port for examples
+# Install package
+RUN pip install --no-cache-dir .
+
+# Expose port
 EXPOSE 8000
 
 # Default command
