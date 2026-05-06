@@ -83,14 +83,21 @@ from .atp import (
     PriceQuote,
     SettlementStatus,
 )
-from .acp2 import (
-    ACPClient as AgentClient,
-    Agent,
-    Message,
-    MessageRole,
-    Tool,
-    ToolCall,
-    ToolResult,
+from .agentdid import (
+    AgentDID,
+    DIDClient,
+    DIDDocument,
+    DIDMethod,
+    VerificationMethod,
+    Service,
+)
+from .registry import (
+    AgentRegistry,
+    RegistryClient,
+    AgentEntry,
+    AgentCapability,
+    AgentStatus,
+    SearchQuery,
 )
 
 __all__ = [
@@ -151,6 +158,44 @@ __all__ = [
     "Tool",
     "ToolCall",
     "ToolResult",
+    # AuthZen
+    "AuthZClient",
+    "AuthZServer",
+    "AccessRequest",
+    "Decision",
+    "DecisionEffect",
+    "Subject",
+    "Resource",
+    "Action",
+    "Context",
+    "Policy",
+    # Agent Identity
+    "AgentIdentity",
+    "AgentCredential",
+    "IdentityClient",
+    "Token",
+    "TokenRequest",
+    "AgentRegistry",
+    "AgentCapability",
+    # Entra ID
+    "EntraClient",
+    "VerifiedCredentialManager",
+    "AgentPrincipal",
+    "VerifiedCredential",
+    "AccessToken",
+    "AgentType",
+    # Agent DID
+    "AgentDID",
+    "DIDClient",
+    "DIDDocument",
+    "DIDMethod",
+    "VerificationMethod",
+    "Service",
+    # Registry
+    "RegistryClient",
+    "AgentEntry",
+    "SearchQuery",
+    "RegistryStats",
     # Version
     "__version__",
 ]
