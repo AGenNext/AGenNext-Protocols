@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agennext-protocols"
+version = "1.0.0"
+description = "AGenNext Protocols - AI Agent Protocols SDK"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "AGenNext", email = "info@agennext.io"}]
+homepage = "https://github.com/AGenNext/AGenNext-Protocols"
+repository = "https://github.com/AGenNext/AGenNext-Protocols"
+keywords = ["ai", "agents", "mcp", "a2a", "ucp", "ap2", "ag-ui", "protocol"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "sseclient>=3.0.0",
+    "pyjwt>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "black>=24.0.0",
+    "ruff>=0.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/AGenNext/AGenNext-Protocols"
+Documentation = "https://docs.agennext.io"
+Repository = "https://github.com/AGenNext/AGenNext-Protocols"
+Issues = "https://github.com/AGenNext/AGenNext-Protocols/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["agennext*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
