@@ -36,6 +36,9 @@ dev = [
     "pytest-asyncio>=0.23.0",
     "black>=24.0.0",
     "ruff>=0.4.0",
+    "bandit[toml]>=1.7.8",
+    "pip-audit>=2.7.3",
+    "build>=1.2.1",
 ]
 
 [project.urls]
@@ -43,6 +46,7 @@ Homepage = "https://github.com/AGenNext/AGenNext-Protocols"
 Documentation = "https://docs.agennext.io"
 Repository = "https://github.com/AGenNext/AGenNext-Protocols"
 Issues = "https://github.com/AGenNext/AGenNext-Protocols/issues"
+Security = "https://github.com/AGenNext/AGenNext-Protocols/security/policy"
 
 [tool.setuptools.packages.find]
 where = ["."]
@@ -53,7 +57,20 @@ include = ["agennext*"]
 
 [tool.ruff]
 line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101"]
 
 [tool.black]
 line-length = 100
 target-version = ["py310"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv", "build", "dist"]
+skips = ["B101"]
