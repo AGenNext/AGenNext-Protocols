@@ -1,0 +1,1 @@
+from agennext import __version__\n\n\ndef test_version_exists() -> None:\n    assert isinstance(__version__, str)\n    assert __version__\n
