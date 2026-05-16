@@ -19,6 +19,7 @@ A comprehensive collection of AI agent protocols for multi-agent systems.
 | 11 | **Entra ID** | `agennext.entraid` | Azure AD - Microsoft Entra ID |
 | 12 | **Agent DID** | `agennext.agentdid` | Decentralized Identity - W3C DID |
 | 13 | **Registry** | `agennext.registry` | Agent Discovery - A2A discovery |
+| 14 | **Agent Governance** | `agennext.agent_governance` | Runtime security governance |
 
 ## Installation
 
@@ -32,7 +33,8 @@ pip install agennext-protocols
 from agennext import (
     MCPClient, A2AClient, UCPClient, PaymentClient,
     AGUIStream, ACPClient, ATPClient, AuthZClient,
-    IdentityClient, EntraClient, AgentDID, AgentRegistry
+    IdentityClient, EntraClient, AgentDID, AgentRegistry,
+    GovernanceClient, AgentTrust
 )
 
 # MCP - Connect to tools
@@ -106,9 +108,41 @@ agents = await registry.discover(capability="tools")
 - **Entra ID** - Azure AD
 - **Agent DID** - Decentralized ID
 - **ACP2** - Editor-agent (Zed)
+- **Agent Governance** - Runtime security
 
 ### Discovery
 - **Registry** - Agent registry
+
+### Governance & Security
+- **Agent Governance** - Runtime security, policy enforcement
+
+```python
+# Agent Governance - Policy-gated operations
+from agennext.agent_governance import GovernanceClient, PolicyGate, AgentTrust, TrustTier
+
+# Initialize governance client
+gov = GovernanceClient(policy_dir="./policies")
+
+# Register an agent with trust score
+await gov.register_agent(
+    did="did:agent:assistant-001",
+    public_key="ed25519:...",
+    trust_score=750,
+    capabilities=["tools", "files"]
+)
+
+# Gate tool calls with trust enforcement
+async with PolicyGate(gov, min_trust_tier="standard", agent_did="did:agent:assistant-001") as gate:
+    result = await agent.invoke("transfer", amount=100)
+
+# Verify agent trust
+trusted = await AgentTrust.verify("did:agent:assistant-001", min_score=500)
+
+# Get trust score
+score = await AgentTrust.get_trust_score("did:agent:assistant-001")
+```
+
+Requires: `pip install agent-governance-toolkit`
 
 ## Docker
 
